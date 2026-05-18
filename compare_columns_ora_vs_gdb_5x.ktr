@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>compare_columns_ora_vs_gdb_5x</name>
+    <description>Oracle vs GoldenDB Column Metadata Comparison (PDI 5.x Compatible)</description>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+      <parameter>
+        <name>ORA_TABLE_LIST</name>
+        <default_value>'T_ORDER','T_USER'</default_value>
+        <description>Oracle table names (UPPERCASE, single-quoted, comma separated)</description>
+      </parameter>
+      <parameter>
+        <name>GDB_TABLE_LIST</name>
+        <default_value>'t_order','t_user'</default_value>
+        <description>GoldenDB table names (lowercase)</description>
+      </parameter>
+      <parameter>
+        <name>GDB_SCHEMA</name>
+        <default_value>your_db</default_value>
+        <description>GoldenDB schema name</description>
+      </parameter>
+    </parameters>
+    <log>
+      <trans-log-table>
+        <connection/>
+        <schema/>
+        <table/>
+        <size_limit_lines/>
+        <interval/>
+        <timeout_days/>
+      </trans-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <created_user>-</created_user>
+    <created_date>2026&#47;05&#47;18 00:00:00.000</created_date>
+    <modified_user>-</modified_user>
+    <modified_date>2026&#47;05&#47;18 00:00:00.000</modified_date>
+  </info>
+
+  <connection>
+    <name>ORA_SRC</name>
+    <server>oracle_host</server>
+    <type>ORACLE</type>
+    <access>Native</access>
+    <database>ORCL</database>
+    <port>1521</port>
+    <username>ora_user</username>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+
+  <connection>
+    <name>GDB_TGT</name>
+    <server>goldendb_host</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>your_db</database>
+    <port>3306</port>
+    <username>gdb_user</username>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>3306</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>utf8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.zeroDateTimeBehavior</code><attribute>convertToNull</attribute></attribute>
+    </attributes>
+  </connection>
+
+  <order>
+    <hop><from>Read Oracle Columns</from><to>Sort Oracle</to><enabled>Y</enabled></hop>
+    <hop><from>Read GoldenDB Columns</from><to>Sort GoldenDB</to><enabled>Y</enabled></hop>
+    <hop><from>Sort Oracle</from><to>Merge Diff</to><enabled>Y</enabled></hop>
+    <hop><from>Sort GoldenDB</from><to>Merge Diff</to><enabled>Y</enabled></hop>
+    <hop><from>Merge Diff</from><to>Filter Differences</to><enabled>Y</enabled></hop>
+    <hop><from>Filter Differences</from><to>Add Timestamp</to><enabled>Y</enabled></hop>
+    <hop><from>Add Timestamp</from><to>Write Diff Result</to><enabled>Y</enabled></hop>
+  </order>
+
+  <step>
+    <name>Read Oracle Columns</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>ORA_SRC</connection>
+    <sql>SELECT 
+  LOWER(table_name)   AS table_name,
+  LOWER(column_name)  AS column_name,
+  CASE data_type
+    WHEN 'VARCHAR2'  THEN 'VARCHAR'
+    WHEN 'NVARCHAR2' THEN 'VARCHAR'
+    WHEN 'NUMBER'    THEN 'DECIMAL'
+    WHEN 'DATE'      THEN 'DATETIME'
+    WHEN 'CLOB'      THEN 'TEXT'
+    WHEN 'BLOB'      THEN 'BLOB'
+    ELSE data_type
+  END AS data_type,
+  CASE 
+    WHEN data_type IN ('VARCHAR2','NVARCHAR2','CHAR','NCHAR') THEN 
+      CASE char_used WHEN 'C' THEN char_length ELSE data_length END
+    WHEN data_type = 'NUMBER' THEN NVL(data_precision, 38)
+    ELSE data_length
+  END AS data_length,
+  NVL(data_scale, 0)  AS data_scale,
+  CASE nullable WHEN 'Y' THEN 'YES' ELSE 'NO' END AS is_nullable
+FROM user_tab_columns
+WHERE table_name IN (${ORA_TABLE_LIST})
+ORDER BY LOWER(table_name), LOWER(column_name)</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Read GoldenDB Columns</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>GDB_TGT</connection>
+    <sql>SELECT 
+  LOWER(table_name)  AS table_name,
+  LOWER(column_name) AS column_name,
+  CASE UPPER(data_type)
+    WHEN 'VARCHAR'   THEN 'VARCHAR'
+    WHEN 'CHAR'      THEN 'CHAR'
+    WHEN 'INT'       THEN 'DECIMAL'
+    WHEN 'BIGINT'    THEN 'DECIMAL'
+    WHEN 'TINYINT'   THEN 'DECIMAL'
+    WHEN 'SMALLINT'  THEN 'DECIMAL'
+    WHEN 'DECIMAL'   THEN 'DECIMAL'
+    WHEN 'NUMERIC'   THEN 'DECIMAL'
+    WHEN 'DATETIME'  THEN 'DATETIME'
+    WHEN 'TIMESTAMP' THEN 'DATETIME'
+    WHEN 'TEXT'      THEN 'TEXT'
+    WHEN 'LONGTEXT'  THEN 'TEXT'
+    ELSE UPPER(data_type)
+  END AS data_type,
+  CAST(
+    CASE 
+      WHEN data_type IN ('varchar','char') THEN character_maximum_length
+      WHEN data_type IN ('int','bigint','tinyint','smallint','decimal','numeric') THEN numeric_precision
+      ELSE COALESCE(character_maximum_length, numeric_precision, 0)
+    END AS SIGNED
+  ) AS data_length,
+  CAST(COALESCE(numeric_scale, 0) AS SIGNED) AS data_scale,
+  is_nullable
+FROM information_schema.columns
+WHERE table_schema = '${GDB_SCHEMA}'
+  AND table_name IN (${GDB_TABLE_LIST})
+ORDER BY LOWER(table_name), LOWER(column_name)</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>100</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Sort Oracle</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>table_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>column_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>300</xloc>
+      <yloc>100</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Sort GoldenDB</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>table_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>column_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>300</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Merge Diff</name>
+    <type>MergeRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <keys>
+      <key>table_name</key>
+      <key>column_name</key>
+    </keys>
+    <values>
+      <value>data_type</value>
+      <value>data_length</value>
+      <value>data_scale</value>
+      <value>is_nullable</value>
+    </values>
+    <flag_field>flag</flag_field>
+    <reference>Sort Oracle</reference>
+    <compare>Sort GoldenDB</compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>500</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Filter Differences</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Add Timestamp</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>flag</leftvalue>
+        <function>&lt;&gt;</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>identical</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>680</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Add Timestamp</name>
+    <type>SystemInfo</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>check_time</name>
+        <type>system date (fixed)</type>
+      </field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>840</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step>
+    <name>Write Diff Result</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>GDB_TGT</connection>
+    <schema/>
+    <table>meta_diff_result</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field><column_name>table_name</column_name><stream_name>table_name</stream_name></field>
+      <field><column_name>column_name</column_name><stream_name>column_name</stream_name></field>
+      <field><column_name>flag</column_name><stream_name>flag</stream_name></field>
+      <field><column_name>data_type</column_name><stream_name>data_type</stream_name></field>
+      <field><column_name>data_length</column_name><stream_name>data_length</stream_name></field>
+      <field><column_name>data_scale</column_name><stream_name>data_scale</stream_name></field>
+      <field><column_name>is_nullable</column_name><stream_name>is_nullable</stream_name></field>
+      <field><column_name>check_time</column_name><stream_name>check_time</stream_name></field>
+    </fields>
+    <cluster_schema/>
+    <remotesteps>
+      <input/>
+      <output/>
+    </remotesteps>
+    <GUI>
+      <xloc>1020</xloc>
+      <yloc>175</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+
+  <step_error_handling>
+  </step_error_handling>
+  <slave-step-copy-partition-distribution>
+  </slave-step-copy-partition-distribution>
+  <slave_transformation>N</slave_transformation>
+</transformation>
