@@ -1,0 +1,17 @@
+/* 全局样式 - 白底蓝色系简洁风 */
+page {
+  background: #f5f6fa;
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+}
+
+button::after {
+  border: none;
+}

@@ -1,0 +1,65 @@
+<view class="container">
+  <!-- 分数展示 -->
+  <view class="score-section">
+    <text class="score-icon">{{batteryIcon}}</text>
+    <text class="score-num">{{score}}</text>
+    <text class="score-unit">/ 100</text>
+    <view class="score-label">{{levelShort}}</view>
+  </view>
+
+  <!-- 诊断卡片 -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-dot blue"></view>
+      <text class="card-title">诊断：</text>
+    </view>
+    <text class="card-body">{{diagnosis}}</text>
+  </view>
+
+  <!-- 保鲜方卡片 -->
+  <view class="card">
+    <view class="card-header">
+      <view class="card-dot green"></view>
+      <text class="card-title">关系保鲜方：</text>
+    </view>
+    <text class="card-body">{{prescription}}</text>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="btn-group">
+    <button class="btn-share" bindtap="generatePoster">生成海报分享</button>
+    <button class="btn-retry" bindtap="restartTest">再测一次 🔄</button>
+  </view>
+
+  <!-- 免责 -->
+  <view class="disclaimer">{{disclaimer}}</view>
+
+  <!-- 底部推荐 -->
+  <view class="recommend">
+    <view class="rec-item">
+      <text class="rec-icon">🔮</text>
+      <text class="rec-name">测运势</text>
+    </view>
+    <view class="rec-item">
+      <text class="rec-icon">📛</text>
+      <text class="rec-name">起名字</text>
+    </view>
+    <view class="rec-item">
+      <text class="rec-icon">📖</text>
+      <text class="rec-name">百家姓</text>
+    </view>
+  </view>
+
+  <!-- Canvas -->
+  <canvas type="2d" id="posterCanvas" style="position:fixed;left:-9999px;top:0;width:750px;height:1200px;"></canvas>
+
+  <!-- 海报弹窗 -->
+  <view class="modal {{showPoster ? 'show' : ''}}" bindtap="closePoster">
+    <view class="modal-content" catchtap="preventTap">
+      <view class="modal-close" bindtap="closePoster"><text>✕</text></view>
+      <image class="modal-img" src="{{posterUrl}}" mode="widthFix" show-menu-by-longpress="{{true}}"></image>
+      <button class="btn-save" bindtap="savePoster">保存到相册</button>
+      <text class="modal-tip">长按图片可直接分享</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+.container { padding: 30rpx; }
+.card { background: #fff; border-radius: 16rpx; padding: 30rpx; margin-bottom: 24rpx; box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05); }
+.card-title { font-size: 30rpx; font-weight: bold; color: #333; margin-bottom: 12rpx; }
+.card-text { font-size: 28rpx; color: #555; line-height: 1.8; }
+.card-sub { font-size: 26rpx; color: #888; margin-top: 16rpx; padding-top: 16rpx; border-top: 1rpx solid #eee; }
+.highlight { color: #2d8cf0; font-weight: bold; }
+.btn-area { margin-top: 60rpx; display: flex; justify-content: center; }
+.btn-start { width: 360rpx; height: 80rpx; line-height: 80rpx; text-align: center; background: #2d8cf0; color: #fff; font-size: 30rpx; font-weight: bold; border-radius: 40rpx; border: none; }
+.btn-start:active { background: #2074d4; }

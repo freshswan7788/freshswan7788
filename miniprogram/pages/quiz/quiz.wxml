@@ -1,0 +1,34 @@
+<view class="container">
+  <!-- 提示 -->
+  <view class="header-tip">请根据近半年来你的婚姻真实状态，选择最符合的选项：</view>
+
+  <!-- 维度标题 -->
+  <view class="dimension">
+    <view class="dimension-dot"></view>
+    <text class="dimension-text">{{dimensions[currentIndex]}}</text>
+  </view>
+
+  <!-- 题目 -->
+  <view class="question-card">
+    <text class="question-num">第 {{currentIndex + 1}} 题：</text>
+    <text class="question-text">{{questions[currentIndex]}}</text>
+  </view>
+
+  <!-- 横排选项标签 -->
+  <view class="options-row">
+    <view
+      class="option-tag {{answers[currentIndex] === item.value ? 'active' : ''}}"
+      wx:for="{{options}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="selectOption"
+    >{{item.label}}</view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-bar">
+    <button class="btn-prev" bindtap="prevQuestion" disabled="{{currentIndex === 0}}">上一题</button>
+    <button wx:if="{{currentIndex < totalQuestions - 1}}" class="btn-next" bindtap="nextQuestion">下一题</button>
+    <button wx:else class="btn-submit" bindtap="submitQuiz">开始计算</button>
+  </view>
+</view>

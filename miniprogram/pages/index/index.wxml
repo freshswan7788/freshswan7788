@@ -1,0 +1,18 @@
+<view class="container">
+  <!-- 声明卡片 -->
+  <view class="card">
+    <view class="card-title">声明：</view>
+    <view class="card-text">本情感计算器，不收集个人信息，只做娱乐用途，不收取任何费用，只赚点广告佣金，可放心使用。</view>
+  </view>
+
+  <!-- 说明卡片 -->
+  <view class="card">
+    <view class="card-text">本表单共 <text class="highlight">10 道题</text>，严格对应 10 个维度（每维度 1 道题）。题目采用 <text class="highlight">李克特 5 级量表法</text>（1-5分），完全避开了财产、通话记录、出轨历史等敏感隐私，聚焦于"主观感受"与"互动模式"。</view>
+    <view class="card-sub">请认真作答，勿与伴侣商量，选择你心中真实感受。</view>
+  </view>
+
+  <!-- 开始按钮 -->
+  <view class="btn-area">
+    <button class="btn-start" bindtap="startTest">开始测试</button>
+  </view>
+</view>

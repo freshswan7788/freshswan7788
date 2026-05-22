@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="loading-box">
+    <view class="spinner"></view>
+    <view class="loading-text">计算中，请等待</view>
+    <view class="countdown">（显示~{{countdown}}秒进入广告）</view>
+  </view>
+
+  <!-- 广告位 -->
+  <view class="ad-area">
+    <view class="ad-label">广告</view>
+    <view class="ad-box">
+      <text class="ad-placeholder-text">广告加载中...</text>
+    </view>
+  </view>
+</view>
