@@ -97,4 +97,34 @@
       </view>
     </view>
   </view>
+
+  <!-- 隐藏的Canvas用于绘制海报 -->
+  <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+
+  <!-- 海报弹窗 -->
+  <view class="poster-modal {{showPoster ? 'show' : ''}}" bindtap="closePoster">
+    <view class="poster-modal-content" catchtap="preventTap">
+      <!-- 关闭按钮 -->
+      <view class="poster-close" bindtap="closePoster">
+        <text>✕</text>
+      </view>
+      
+      <!-- 海报图片 -->
+      <image 
+        class="poster-image" 
+        src="{{posterUrl}}" 
+        mode="widthFix"
+        show-menu-by-longpress="{{true}}"
+      ></image>
+      
+      <!-- 底部操作 -->
+      <view class="poster-actions">
+        <button class="save-btn" bindtap="savePoster">
+          <text class="save-icon">💾</text>
+          <text>保存到相册</text>
+        </button>
+        <view class="poster-tip">长按图片可直接分享给好友</view>
+      </view>
+    </view>
+  </view>
 </view>
