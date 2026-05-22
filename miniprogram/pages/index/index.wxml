@@ -1,45 +1,18 @@
-<view class="page">
-  <!-- 渐变背景层 -->
-  <view class="bg-layer"></view>
+<view class="container">
+  <!-- 声明卡片 -->
+  <view class="card">
+    <view class="card-title">声明：</view>
+    <view class="card-text">本情感计算器，不收集个人信息，只做娱乐用途，不收取任何费用，只赚点广告佣金，可放心使用。</view>
+  </view>
 
-  <!-- 主内容 -->
-  <view class="content">
-    <!-- 主视觉插画 -->
-    <view class="hero-image-wrap">
-      <image class="hero-image" src="{{heroImg}}" mode="aspectFit"></image>
-    </view>
+  <!-- 说明卡片 -->
+  <view class="card">
+    <view class="card-text">本表单共 <text class="highlight">10 道题</text>，严格对应 10 个维度（每维度 1 道题）。题目采用 <text class="highlight">李克特 5 级量表法</text>（1-5分），完全避开了财产、通话记录、出轨历史等敏感隐私，聚焦于"主观感受"与"互动模式"。</view>
+    <view class="card-sub">请认真作答，勿与伴侣商量，选择你心中真实感受。</view>
+  </view>
 
-    <!-- 标题区 -->
-    <view class="title-area">
-      <text class="main-title">两性情感计算器</text>
-      <text class="sub-title">2分钟测出你的爱情温度</text>
-    </view>
-
-    <!-- 亮点标签 -->
-    <view class="tags-row">
-      <view class="tag-item">
-        <text class="tag-emoji">🔒</text>
-        <text class="tag-text">隐私安全</text>
-      </view>
-      <view class="tag-item">
-        <text class="tag-emoji">🎯</text>
-        <text class="tag-text">10维度分析</text>
-      </view>
-      <view class="tag-item">
-        <text class="tag-emoji">💊</text>
-        <text class="tag-text">专属处方</text>
-      </view>
-    </view>
-
-    <!-- 开始按钮 -->
-    <button class="start-btn" bindtap="startTest">
-      <text class="start-text">开始测试</text>
-      <text class="start-arrow">→</text>
-    </button>
-
-    <!-- 底部信息 -->
-    <view class="bottom-note">
-      <text>仅供娱乐 · 不收集隐私 · 完全免费</text>
-    </view>
+  <!-- 开始按钮 -->
+  <view class="btn-area">
+    <button class="btn-start" bindtap="startTest">开始测试</button>
   </view>
 </view>

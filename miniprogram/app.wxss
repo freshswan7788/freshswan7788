@@ -1,11 +1,10 @@
-/* 全局样式 */
+/* 全局样式 - 白底蓝色系简洁风 */
 page {
-  background: #fff5f5;
-  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
-  font-size: 30rpx;
-  color: #4a3f5c;
-  line-height: 1.7;
-  min-height: 100vh;
+  background: #f5f6fa;
+  font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  font-size: 28rpx;
+  color: #333;
+  line-height: 1.6;
 }
 
 button {

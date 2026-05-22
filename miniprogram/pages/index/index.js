@@ -1,15 +1,7 @@
-const IMAGES = require('../../utils/images')
-
 Page({
-  data: {
-    heroImg: IMAGES.heroCouple
-  },
-
+  data: {},
   onLoad() {},
-
   startTest() {
-    wx.navigateTo({
-      url: '/pages/quiz/quiz'
-    })
+    wx.navigateTo({ url: '/pages/quiz/quiz' })
   }
 })
