@@ -139,167 +139,168 @@ Page({
   },
 
   drawPosterContent(ctx, canvas, width, height) {
-    const { score, levelShort, batteryPercent, diagnosis, prescription } = this.data
+    const { score, levelShort, batteryPercent, batteryIcon, diagnosis, prescription } = this.data
 
-    // 1. 绘制背景渐变
-    const bgGradient = ctx.createLinearGradient(0, 0, 0, height)
-    bgGradient.addColorStop(0, '#f8f9ff')
-    bgGradient.addColorStop(0.3, '#e8ecff')
-    bgGradient.addColorStop(1, '#dfe6ff')
+    // === 1. 精美渐变背景 ===
+    const bgGradient = ctx.createLinearGradient(0, 0, width, height)
+    bgGradient.addColorStop(0, '#ffecd2')
+    bgGradient.addColorStop(0.3, '#fcb69f')
+    bgGradient.addColorStop(0.6, '#ff9a9e')
+    bgGradient.addColorStop(1, '#fecfef')
     ctx.fillStyle = bgGradient
     ctx.fillRect(0, 0, width, height)
 
-    // 2. 绘制装饰圆
+    // === 2. 装饰圆形 ===
+    ctx.globalAlpha = 0.15
     ctx.beginPath()
-    ctx.arc(600, 80, 200, 0, Math.PI * 2)
-    ctx.fillStyle = 'rgba(108, 92, 231, 0.08)'
+    ctx.arc(620, 120, 180, 0, Math.PI * 2)
+    ctx.fillStyle = '#fff'
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(80, 900, 120, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(680, 800, 100, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.globalAlpha = 1
+
+    // === 3. 白色主卡片区域 ===
+    this.drawRoundRect(ctx, 40, 50, width - 80, height - 100, 40)
+    ctx.fillStyle = 'rgba(255,255,255,0.92)'
     ctx.fill()
 
-    ctx.beginPath()
-    ctx.arc(100, 400, 150, 0, Math.PI * 2)
-    ctx.fillStyle = 'rgba(162, 155, 254, 0.06)'
-    ctx.fill()
-
-    // 3. 绘制顶部标题区域
-    ctx.fillStyle = '#6c5ce7'
-    ctx.font = 'bold 40px sans-serif'
+    // === 4. 顶部标题 ===
+    ctx.fillStyle = '#ff6b8a'
+    ctx.font = 'bold 36px sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText('两性情感计算器', width / 2, 80)
+    ctx.fillText('💕 两性情感计算器', width / 2, 120)
 
-    ctx.fillStyle = '#999'
+    ctx.fillStyle = '#b8a9c9'
+    ctx.font = '22px sans-serif'
+    ctx.fillText('— 你的爱情体检报告 —', width / 2, 158)
+
+    // === 5. 大分数展示 ===
+    // 分数背景圆
+    ctx.beginPath()
+    ctx.arc(width / 2, 280, 100, 0, Math.PI * 2)
+    const scoreGrad = ctx.createRadialGradient(width / 2, 280, 20, width / 2, 280, 100)
+    scoreGrad.addColorStop(0, '#fff0f3')
+    scoreGrad.addColorStop(1, '#ffe4e8')
+    ctx.fillStyle = scoreGrad
+    ctx.fill()
+
+    // 分数数字
+    ctx.fillStyle = '#ff6b8a'
+    ctx.font = 'bold 72px sans-serif'
+    ctx.textAlign = 'center'
+    ctx.fillText(score, width / 2, 298)
+
+    ctx.fillStyle = '#ffb3c1'
     ctx.font = '24px sans-serif'
-    ctx.fillText('婚姻情感续航自查报告', width / 2, 120)
+    ctx.fillText('/ 100 分', width / 2, 338)
 
-    // 4. 分隔线
-    const lineGradient = ctx.createLinearGradient(100, 150, width - 100, 150)
-    lineGradient.addColorStop(0, 'rgba(108, 92, 231, 0)')
-    lineGradient.addColorStop(0.5, 'rgba(108, 92, 231, 0.3)')
-    lineGradient.addColorStop(1, 'rgba(108, 92, 231, 0)')
-    ctx.strokeStyle = lineGradient
-    ctx.lineWidth = 2
-    ctx.beginPath()
-    ctx.moveTo(100, 150)
-    ctx.lineTo(width - 100, 150)
-    ctx.stroke()
-
-    // 5. 分数展示区
-    ctx.fillStyle = '#2d3436'
-    ctx.font = 'bold 80px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText(score + '分', width / 2, 240)
-
-    // 电量百分比标签
-    this.drawRoundRect(ctx, width / 2 - 100, 260, 200, 44, 22)
-    ctx.fillStyle = 'rgba(108, 92, 231, 0.1)'
-    ctx.fill()
-    ctx.strokeStyle = 'rgba(108, 92, 231, 0.3)'
-    ctx.lineWidth = 1
-    ctx.stroke()
-
-    ctx.fillStyle = '#6c5ce7'
-    ctx.font = 'bold 24px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText(batteryPercent, width / 2, 289)
-
-    // 6. 等级标签
-    this.drawRoundRect(ctx, 40, 330, width - 80, 56, 12)
-    const levelGradient = ctx.createLinearGradient(40, 330, width - 40, 330)
-    levelGradient.addColorStop(0, '#6c5ce7')
-    levelGradient.addColorStop(1, '#a29bfe')
-    ctx.fillStyle = levelGradient
+    // === 6. 等级标签 ===
+    const tagWidth = 240
+    this.drawRoundRect(ctx, (width - tagWidth) / 2, 390, tagWidth, 50, 25)
+    const tagGrad = ctx.createLinearGradient((width - tagWidth) / 2, 390, (width + tagWidth) / 2, 390)
+    tagGrad.addColorStop(0, '#ff6b8a')
+    tagGrad.addColorStop(1, '#ff9a9e')
+    ctx.fillStyle = tagGrad
     ctx.fill()
 
-    ctx.fillStyle = '#ffffff'
+    ctx.fillStyle = '#fff'
     ctx.font = 'bold 26px sans-serif'
     ctx.textAlign = 'center'
-    ctx.fillText(levelShort, width / 2, 365)
+    ctx.fillText(batteryIcon + ' ' + levelShort, width / 2, 422)
 
-    // 7. 诊断区域
-    let currentY = 420
+    // === 7. 诊断区域 ===
+    let currentY = 480
 
     // 诊断标题
-    ctx.fillStyle = '#6c5ce7'
-    ctx.font = 'bold 28px sans-serif'
+    ctx.fillStyle = '#ff6b8a'
+    ctx.font = 'bold 26px sans-serif'
     ctx.textAlign = 'left'
-    ctx.fillText('🩺 诊断：', 50, currentY)
-    currentY += 16
+    ctx.fillText('🩺 诊断结果', 80, currentY)
 
-    // 诊断卡片背景
-    const diagLines = this.wrapText(ctx, diagnosis, width - 120, '24px sans-serif')
-    const diagHeight = diagLines.length * 38 + 30
-    this.drawRoundRect(ctx, 40, currentY, width - 80, diagHeight, 16)
-    ctx.fillStyle = '#ffffff'
-    ctx.fill()
-    ctx.strokeStyle = 'rgba(108, 92, 231, 0.1)'
-    ctx.lineWidth = 1
+    // 诊断分隔线
+    currentY += 16
+    ctx.strokeStyle = '#ffe4e8'
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(80, currentY)
+    ctx.lineTo(width - 80, currentY)
     ctx.stroke()
+    currentY += 24
 
     // 诊断内容
-    ctx.fillStyle = '#555'
-    ctx.font = '24px sans-serif'
-    ctx.textAlign = 'left'
-    currentY += 30
-    diagLines.forEach((line) => {
-      ctx.fillText(line, 60, currentY)
-      currentY += 38
-    })
-    currentY += 20
-
-    // 8. 保鲜方区域
-    ctx.fillStyle = '#ff6b9d'
-    ctx.font = 'bold 28px sans-serif'
-    ctx.textAlign = 'left'
-    ctx.fillText('💊 关系保鲜方：', 50, currentY)
-    currentY += 16
-
-    // 保鲜方卡片背景
-    const prescText = prescription.replace(/\n/g, ' ')
-    const prescLines = this.wrapText(ctx, prescText, width - 120, '24px sans-serif')
-    // 限制最多显示8行
-    const displayLines = prescLines.slice(0, 8)
-    const prescHeight = displayLines.length * 38 + 30
-    this.drawRoundRect(ctx, 40, currentY, width - 80, prescHeight, 16)
-    ctx.fillStyle = '#ffffff'
-    ctx.fill()
-    ctx.strokeStyle = 'rgba(255, 107, 157, 0.1)'
-    ctx.lineWidth = 1
-    ctx.stroke()
-
-    // 保鲜方内容
-    ctx.fillStyle = '#555'
-    ctx.font = '24px sans-serif'
-    ctx.textAlign = 'left'
-    currentY += 30
-    displayLines.forEach((line, index) => {
-      if (index === displayLines.length - 1 && prescLines.length > 8) {
-        ctx.fillText(line.slice(0, -3) + '...', 60, currentY)
-      } else {
-        ctx.fillText(line, 60, currentY)
-      }
-      currentY += 38
-    })
-
-    // 9. 底部区域
-    currentY = height - 100
-
-    // 底部分隔线
-    ctx.strokeStyle = 'rgba(108, 92, 231, 0.15)'
-    ctx.lineWidth = 1
-    ctx.beginPath()
-    ctx.moveTo(100, currentY)
-    ctx.lineTo(width - 100, currentY)
-    ctx.stroke()
-
-    currentY += 40
-    ctx.fillStyle = '#999'
+    ctx.fillStyle = '#5a4f6a'
     ctx.font = '22px sans-serif'
-    ctx.textAlign = 'center'
-    ctx.fillText('长按识别小程序码 · 测一测你的情感电量', width / 2, currentY)
+    ctx.textAlign = 'left'
+    const diagLines = this.wrapText(ctx, diagnosis, width - 180, '22px sans-serif')
+    const showDiagLines = diagLines.slice(0, 6)
+    showDiagLines.forEach((line, i) => {
+      if (i === showDiagLines.length - 1 && diagLines.length > 6) {
+        ctx.fillText(line.substring(0, line.length - 3) + '...', 80, currentY)
+      } else {
+        ctx.fillText(line, 80, currentY)
+      }
+      currentY += 34
+    })
 
-    currentY += 36
-    ctx.fillStyle = '#bbb'
+    // === 8. 保鲜方区域 ===
+    currentY += 20
+    ctx.fillStyle = '#a18cd1'
+    ctx.font = 'bold 26px sans-serif'
+    ctx.textAlign = 'left'
+    ctx.fillText('💊 关系保鲜方', 80, currentY)
+
+    currentY += 16
+    ctx.strokeStyle = '#ece4f5'
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.moveTo(80, currentY)
+    ctx.lineTo(width - 80, currentY)
+    ctx.stroke()
+    currentY += 24
+
+    ctx.fillStyle = '#5a4f6a'
+    ctx.font = '22px sans-serif'
+    const prescText = prescription.replace(/\n/g, ' ')
+    const prescLines = this.wrapText(ctx, prescText, width - 180, '22px sans-serif')
+    const showPrescLines = prescLines.slice(0, 6)
+    showPrescLines.forEach((line, i) => {
+      if (i === showPrescLines.length - 1 && prescLines.length > 6) {
+        ctx.fillText(line.substring(0, line.length - 3) + '...', 80, currentY)
+      } else {
+        ctx.fillText(line, 80, currentY)
+      }
+      currentY += 34
+    })
+
+    // === 9. 底部区域 ===
+    // 分隔装饰
+    const bottomY = height - 180
+    ctx.fillStyle = '#ffe4e8'
+    ctx.beginPath()
+    ctx.arc(width / 2 - 30, bottomY, 4, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(width / 2, bottomY, 4, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(width / 2 + 30, bottomY, 4, 0, Math.PI * 2)
+    ctx.fill()
+
+    // 扫码提示
+    ctx.fillStyle = '#b8a9c9'
     ctx.font = '20px sans-serif'
-    ctx.fillText('本结果仅当娱乐，切勿当真', width / 2, currentY)
+    ctx.textAlign = 'center'
+    ctx.fillText('扫码测一测你的爱情温度', width / 2, bottomY + 50)
+
+    // 免责声明
+    ctx.fillStyle = '#ddd'
+    ctx.font = '18px sans-serif'
+    ctx.fillText('本结果仅当娱乐，切勿当真', width / 2, bottomY + 90)
 
     // 10. 导出图片
     setTimeout(() => {
