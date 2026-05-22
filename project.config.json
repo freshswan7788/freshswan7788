@@ -38,7 +38,7 @@
     }
   },
   "compileType": "miniprogram",
-  "miniprogramRoot": "./",
+  "miniprogramRoot": "miniprogram/",
   "libVersion": "2.19.4",
   "appid": "替换为你的AppID",
   "projectname": "emotion-calculator",
