@@ -145,7 +145,7 @@
 }
 
 .question-text {
-  font-size: 32rpx;
+  font-size: 34rpx;
   color: #2d3436;
   line-height: 1.9;
   font-weight: 500;
@@ -233,11 +233,11 @@
 }
 
 .option-score {
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: bold;
   color: #999;
   margin-right: 16rpx;
-  min-width: 50rpx;
+  min-width: 60rpx;
   transition: color 0.25s ease;
 }
 
@@ -246,7 +246,7 @@
 }
 
 .option-label {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #555;
   transition: color 0.25s ease;
 }

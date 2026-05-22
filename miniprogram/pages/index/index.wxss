@@ -130,7 +130,7 @@
 }
 
 .card-content {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #555;
   line-height: 2;
 }
@@ -204,7 +204,7 @@
 }
 
 .score-desc {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #555;
 }
 

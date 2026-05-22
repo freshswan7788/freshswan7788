@@ -138,7 +138,7 @@
 
 .level-text {
   color: #fff;
-  font-size: 28rpx;
+  font-size: 32rpx;
   font-weight: bold;
   line-height: 1.7;
 }
@@ -203,7 +203,7 @@
 }
 
 .card-title {
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-weight: bold;
   color: #2d3436;
 }
@@ -213,7 +213,7 @@
 }
 
 .card-content {
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #555;
   line-height: 2;
   white-space: pre-wrap;
