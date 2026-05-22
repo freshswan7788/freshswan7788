@@ -5,14 +5,14 @@
     <view class="bg-shape shape-2"></view>
   </view>
 
-  <!-- 电量展示区 -->
-  <view class="battery-section">
-    <view class="battery-glow"></view>
-    <view class="battery-icon-wrapper">
-      <text class="battery-emoji">{{batteryIcon}}</text>
+  <!-- 爱心展示区 -->
+  <view class="heart-section">
+    <view class="heart-glow"></view>
+    <view class="hearts-row">
+      <text class="heart-emoji">{{batteryIcon}}</text>
     </view>
-    <view class="battery-info">
-      <text class="battery-percent">{{batteryPercent}}</text>
+    <view class="heart-info">
+      <text class="heart-percent">{{batteryPercent}}</text>
       <view class="score-badge">
         <text class="score-text">总分：{{score}}分</text>
       </view>

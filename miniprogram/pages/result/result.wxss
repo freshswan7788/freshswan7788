@@ -36,8 +36,8 @@
   left: -150rpx;
 }
 
-/* 电量展示区 */
-.battery-section {
+/* 爱心展示区 */
+.heart-section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,48 +46,49 @@
   z-index: 1;
 }
 
-.battery-glow {
+.heart-glow {
   position: absolute;
   top: 30rpx;
-  width: 200rpx;
-  height: 200rpx;
+  width: 240rpx;
+  height: 240rpx;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(108, 92, 231, 0.15), transparent);
-  animation: glowPulse 2s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(255, 71, 87, 0.15), transparent);
+  animation: heartGlow 2s ease-in-out infinite;
 }
 
-@keyframes glowPulse {
+@keyframes heartGlow {
   0%, 100% { transform: scale(1); opacity: 0.8; }
   50% { transform: scale(1.3); opacity: 0.4; }
 }
 
-.battery-icon-wrapper {
-  margin-bottom: 20rpx;
+.hearts-row {
+  margin-bottom: 24rpx;
   position: relative;
+  animation: heartBounce 0.8s ease;
 }
 
-.battery-emoji {
-  font-size: 100rpx;
-  animation: bounceIn 0.6s ease;
-}
-
-@keyframes bounceIn {
+@keyframes heartBounce {
   0% { transform: scale(0); opacity: 0; }
-  50% { transform: scale(1.2); }
+  50% { transform: scale(1.15); }
   100% { transform: scale(1); opacity: 1; }
 }
 
-.battery-info {
+.heart-emoji {
+  font-size: 60rpx;
+  letter-spacing: 12rpx;
+}
+
+.heart-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12rpx;
 }
 
-.battery-percent {
+.heart-percent {
   font-size: 40rpx;
   font-weight: 800;
-  color: #2d3436;
+  color: #ff4757;
 }
 
 .score-badge {
