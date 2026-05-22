@@ -1,3 +1,4 @@
+/* 加载页 - 卡通可爱风 */
 .container {
   display: flex;
   flex-direction: column;
@@ -27,35 +28,35 @@
 }
 
 .bg-circle-1 {
-  width: 400rpx;
-  height: 400rpx;
-  background: radial-gradient(circle, rgba(108, 92, 231, 0.12), transparent);
-  top: -100rpx;
-  right: -100rpx;
+  width: 300rpx;
+  height: 300rpx;
+  background: radial-gradient(circle, rgba(255, 154, 158, 0.15), transparent);
+  top: -60rpx;
+  right: -80rpx;
   animation-delay: 0s;
 }
 
 .bg-circle-2 {
-  width: 300rpx;
-  height: 300rpx;
-  background: radial-gradient(circle, rgba(162, 155, 254, 0.1), transparent);
-  bottom: 200rpx;
-  left: -80rpx;
+  width: 220rpx;
+  height: 220rpx;
+  background: radial-gradient(circle, rgba(254, 207, 239, 0.12), transparent);
+  bottom: 240rpx;
+  left: -60rpx;
   animation-delay: 2s;
 }
 
 .bg-circle-3 {
-  width: 250rpx;
-  height: 250rpx;
-  background: radial-gradient(circle, rgba(116, 185, 255, 0.1), transparent);
-  bottom: -50rpx;
-  right: 60rpx;
+  width: 180rpx;
+  height: 180rpx;
+  background: radial-gradient(circle, rgba(161, 140, 209, 0.1), transparent);
+  bottom: -30rpx;
+  right: 80rpx;
   animation-delay: 4s;
 }
 
 @keyframes float {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-30rpx) scale(1.05); }
+  50% { transform: translateY(-20rpx) scale(1.05); }
 }
 
 /* 加载动画区域 */
@@ -70,8 +71,8 @@
 
 /* 多层旋转圆环 */
 .rings-container {
-  width: 260rpx;
-  height: 260rpx;
+  width: 240rpx;
+  height: 240rpx;
   position: relative;
   display: flex;
   align-items: center;
@@ -82,30 +83,30 @@
 .ring {
   position: absolute;
   border-radius: 50%;
-  border: 4rpx solid transparent;
+  border: 5rpx solid transparent;
 }
 
 .ring-outer {
-  width: 260rpx;
-  height: 260rpx;
-  border-top-color: #6c5ce7;
-  border-right-color: rgba(108, 92, 231, 0.3);
+  width: 240rpx;
+  height: 240rpx;
+  border-top-color: #ff9a9e;
+  border-right-color: rgba(255, 154, 158, 0.3);
   animation: spin 2s linear infinite;
 }
 
 .ring-middle {
-  width: 200rpx;
-  height: 200rpx;
-  border-bottom-color: #a29bfe;
-  border-left-color: rgba(162, 155, 254, 0.3);
+  width: 180rpx;
+  height: 180rpx;
+  border-bottom-color: #fecfef;
+  border-left-color: rgba(254, 207, 239, 0.3);
   animation: spinReverse 1.5s linear infinite;
 }
 
 .ring-inner {
-  width: 140rpx;
-  height: 140rpx;
-  border-top-color: #74b9ff;
-  border-right-color: rgba(116, 185, 255, 0.3);
+  width: 120rpx;
+  height: 120rpx;
+  border-top-color: #a18cd1;
+  border-right-color: rgba(161, 140, 209, 0.3);
   animation: spin 1s linear infinite;
 }
 
@@ -126,14 +127,14 @@
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.15); opacity: 0.8; }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
 /* 文字区域 */
 .loading-title {
   font-size: 36rpx;
-  color: #2d3436;
+  color: #4a3f5c;
   font-weight: 700;
   margin-bottom: 16rpx;
 }
@@ -146,29 +147,30 @@
 }
 
 .dot {
-  width: 12rpx;
-  height: 12rpx;
+  width: 14rpx;
+  height: 14rpx;
   border-radius: 50%;
-  background: #6c5ce7;
-  animation: bounce 1.4s ease-in-out infinite;
+  background: #ff9a9e;
+  animation: dotBounce 1.4s ease-in-out infinite;
 }
 
 .dot-1 { animation-delay: 0s; }
 .dot-2 { animation-delay: 0.2s; }
 .dot-3 { animation-delay: 0.4s; }
 
-@keyframes bounce {
+@keyframes dotBounce {
   0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40% { transform: scale(1); opacity: 1; }
+  40% { transform: scale(1.2); opacity: 1; }
 }
 
 .countdown-text {
   font-size: 28rpx;
-  color: #6c5ce7;
+  color: #ff6b8a;
   font-weight: 600;
-  padding: 8rpx 30rpx;
-  background: rgba(108, 92, 231, 0.08);
-  border-radius: 20rpx;
+  padding: 10rpx 30rpx;
+  background: #fff0f3;
+  border-radius: 30rpx;
+  border: 2rpx solid #ffe4e8;
 }
 
 /* 提示区域 */
@@ -194,7 +196,7 @@
 
 .tip-text {
   font-size: 26rpx;
-  color: #888;
+  color: #b8a9c9;
 }
 
 /* 广告区域 */
@@ -207,7 +209,7 @@
 
 .ad-label {
   font-size: 22rpx;
-  color: #ccc;
+  color: #ddd;
   text-align: center;
   margin-bottom: 16rpx;
   letter-spacing: 4rpx;
@@ -215,30 +217,31 @@
 
 .ad-box {
   width: 100%;
-  min-height: 280rpx;
+  min-height: 260rpx;
   background: #fff;
-  border-radius: 20rpx;
+  border-radius: 24rpx;
   overflow: hidden;
-  box-shadow: 0 8rpx 40rpx rgba(108, 92, 231, 0.08);
+  box-shadow: 0 6rpx 24rpx rgba(255, 154, 158, 0.08);
+  border: 3rpx solid #ffe4e8;
 }
 
 .ad-placeholder {
   width: 100%;
-  height: 280rpx;
+  height: 260rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16rpx;
-  background: linear-gradient(135deg, #f8f9ff 0%, #eef0ff 100%);
+  background: linear-gradient(135deg, #fff5f7, #fef9ff);
 }
 
 .ad-icon {
   font-size: 48rpx;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 
 .ad-text {
   font-size: 26rpx;
-  color: #bbb;
+  color: #c9b8d9;
 }

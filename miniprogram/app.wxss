@@ -1,9 +1,9 @@
-/* 全局样式 */
+/* 全局样式 - 卡通可爱风 */
 page {
-  background: linear-gradient(180deg, #f8f9ff 0%, #e8ecff 100%);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  background: #fff5f5;
+  font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
   font-size: 32rpx;
-  color: #2d3436;
+  color: #4a3f5c;
   line-height: 1.7;
   min-height: 100vh;
 }
@@ -13,19 +13,20 @@ page {
   box-sizing: border-box;
 }
 
-/* 通用按钮样式 */
+/* 通用按钮样式 - 可爱圆润 */
 .btn-primary {
-  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 50%, #74b9ff 100%);
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffdde1 100%);
   color: #fff;
   border: none;
-  border-radius: 50rpx;
+  border-radius: 60rpx;
   padding: 24rpx 60rpx;
   font-size: 32rpx;
   font-weight: bold;
   text-align: center;
-  box-shadow: 0 12rpx 40rpx rgba(108, 92, 231, 0.35);
+  box-shadow: 0 10rpx 30rpx rgba(255, 154, 158, 0.4);
   position: relative;
   overflow: hidden;
+  letter-spacing: 2rpx;
 }
 
 .btn-primary::after {
@@ -35,7 +36,7 @@ page {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.15), transparent);
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
   animation: shine 3s ease-in-out infinite;
 }
 
@@ -46,13 +47,6 @@ page {
 
 .btn-primary:active {
   opacity: 0.9;
-  transform: scale(0.97);
-  box-shadow: 0 6rpx 20rpx rgba(108, 92, 231, 0.3);
-}
-
-/* 渐变文字 */
-.gradient-text {
-  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-  -webkit-background-clip: text;
-  color: transparent;
+  transform: scale(0.96);
+  box-shadow: 0 6rpx 16rpx rgba(255, 154, 158, 0.3);
 }
