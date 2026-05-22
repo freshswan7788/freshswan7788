@@ -1,0 +1,26 @@
+<view class="container">
+  <!-- 加载动画区域 -->
+  <view class="loading-wrapper">
+    <!-- 动画圆环 -->
+    <view class="loading-circle">
+      <view class="spinner"></view>
+      <view class="loading-icon">🔮</view>
+    </view>
+
+    <!-- 加载文字 -->
+    <view class="loading-text">{{loadingText}}</view>
+    <view class="countdown-text">（显示~{{countdown}}秒进入广告）</view>
+  </view>
+
+  <!-- 广告位预留 -->
+  <view class="ad-placeholder">
+    <view class="ad-label">广告位</view>
+    <view class="ad-box">
+      <!-- 实际接入时替换为 ad 组件 -->
+      <!-- <ad unit-id="your-ad-unit-id"></ad> -->
+      <view class="ad-mock">
+        <text class="ad-mock-text">广告加载中...</text>
+      </view>
+    </view>
+  </view>
+</view>

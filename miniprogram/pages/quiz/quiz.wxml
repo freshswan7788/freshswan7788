@@ -1,0 +1,58 @@
+<view class="container">
+  <!-- 进度条 -->
+  <view class="progress-bar">
+    <view class="progress-fill" style="width: {{(currentIndex + 1) / totalQuestions * 100}}%"></view>
+  </view>
+  <view class="progress-text">{{currentIndex + 1}} / {{totalQuestions}}</view>
+
+  <!-- 题目提示 -->
+  <view class="quiz-header">
+    请根据近半年来你的婚姻真实状态，选择最符合的选项：
+  </view>
+
+  <!-- 维度标题 -->
+  <view class="dimension-title">
+    <view class="dimension-dot"></view>
+    <text>{{dimensions[currentIndex]}}</text>
+  </view>
+
+  <!-- 题目内容 -->
+  <view class="question-card">
+    <view class="question-number">第 {{currentIndex + 1}} 题：</view>
+    <view class="question-text">{{questions[currentIndex]}}</view>
+  </view>
+
+  <!-- 选项列表 -->
+  <view class="options-list">
+    <view 
+      class="option-item {{answers[currentIndex] === item.value ? 'active' : ''}}"
+      wx:for="{{options}}"
+      wx:key="value"
+      data-value="{{item.value}}"
+      bindtap="selectOption"
+    >
+      <text class="option-label">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 导航按钮 -->
+  <view class="nav-buttons">
+    <button 
+      class="nav-btn prev-btn" 
+      bindtap="prevQuestion"
+      disabled="{{currentIndex === 0}}"
+    >上一题</button>
+
+    <button 
+      wx:if="{{currentIndex < totalQuestions - 1}}"
+      class="nav-btn next-btn" 
+      bindtap="nextQuestion"
+    >下一题</button>
+
+    <button 
+      wx:else
+      class="btn-primary submit-btn" 
+      bindtap="submitQuiz"
+    >开始计算</button>
+  </view>
+</view>

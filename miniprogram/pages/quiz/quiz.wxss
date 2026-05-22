@@ -1,0 +1,163 @@
+.container {
+  padding: 30rpx;
+  padding-bottom: 200rpx;
+}
+
+/* 进度条 */
+.progress-bar {
+  width: 100%;
+  height: 12rpx;
+  background: #e0e0e0;
+  border-radius: 6rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 6rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 题目头部提示 */
+.quiz-header {
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 24rpx;
+  line-height: 1.6;
+}
+
+/* 维度标题 */
+.dimension-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.dimension-dot {
+  width: 10rpx;
+  height: 36rpx;
+  background: #667eea;
+  border-radius: 5rpx;
+  margin-right: 14rpx;
+}
+
+/* 题目卡片 */
+.question-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.question-number {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 12rpx;
+}
+
+.question-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.8;
+}
+
+/* 选项列表 */
+.options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-bottom: 40rpx;
+}
+
+.option-item {
+  flex: 1;
+  min-width: calc(50% - 16rpx);
+  background: #fff;
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  padding: 20rpx 16rpx;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.option-item:last-child {
+  min-width: 100%;
+}
+
+.option-item.active {
+  background: #667eea;
+  border-color: #667eea;
+  color: #fff;
+  box-shadow: 0 4rpx 16rpx rgba(102, 126, 234, 0.4);
+}
+
+.option-label {
+  font-size: 26rpx;
+}
+
+.option-item.active .option-label {
+  color: #fff;
+}
+
+/* 导航按钮 */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #f5f5f5;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.nav-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  text-align: center;
+  border: none;
+}
+
+.prev-btn {
+  background: #e0e0e0;
+  color: #666;
+}
+
+.prev-btn[disabled] {
+  background: #f0f0f0;
+  color: #ccc;
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.submit-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  padding: 0;
+}
