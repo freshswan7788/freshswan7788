@@ -5,6 +5,15 @@
     <view class="bg-shape shape-2"></view>
   </view>
 
+  <!-- 卡通漂浮元素 -->
+  <view class="cartoon-floats">
+    <text class="cf-item cf-1">🌸</text>
+    <text class="cf-item cf-2">✨</text>
+    <text class="cf-item cf-3">🦋</text>
+    <text class="cf-item cf-4">💫</text>
+    <text class="cf-item cf-5">🌷</text>
+  </view>
+
   <!-- 爱心展示区 -->
   <view class="heart-section">
     <view class="heart-glow"></view>
@@ -17,6 +26,10 @@
         <text class="score-text">总分：{{score}}分</text>
       </view>
     </view>
+    <!-- 装饰小元素 -->
+    <text class="deco-star deco-1">⭐</text>
+    <text class="deco-star deco-2">✨</text>
+    <text class="deco-star deco-3">💫</text>
   </view>
 
   <!-- 等级标题 -->

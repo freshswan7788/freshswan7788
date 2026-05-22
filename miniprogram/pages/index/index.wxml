@@ -1,83 +1,59 @@
 <view class="container">
-  <!-- 顶部装饰 -->
-  <view class="top-decoration">
-    <view class="deco-circle circle-1"></view>
-    <view class="deco-circle circle-2"></view>
-    <view class="deco-circle circle-3"></view>
+  <!-- 顶部漂浮装饰 -->
+  <view class="floating-elements">
+    <text class="float-item float-1">💕</text>
+    <text class="float-item float-2">✨</text>
+    <text class="float-item float-3">🌸</text>
+    <text class="float-item float-4">💫</text>
+    <text class="float-item float-5">🦋</text>
+    <text class="float-item float-6">🌷</text>
   </view>
 
-  <!-- 标题区域 -->
-  <view class="header-section">
-    <view class="header-icon">💕</view>
-    <view class="header-title">两性情感计算器</view>
-    <view class="header-subtitle">婚姻情感续航自查工具</view>
+  <!-- 主视觉区域 -->
+  <view class="hero-section">
+    <view class="hero-icon">💑</view>
+    <view class="hero-title">两性情感计算器</view>
+    <view class="hero-desc">测一测你们的爱情温度</view>
   </view>
 
-  <!-- 声明区域 -->
-  <view class="card declaration-card">
-    <view class="card-badge">📢 声明</view>
-    <view class="card-content">
-      本情感计算器，不收集个人信息，只做娱乐用途，不收取任何费用，只赚点广告佣金，可放心使用。
+  <!-- 卡通插画卡片 -->
+  <view class="feature-card">
+    <view class="card-illustration">
+      <text class="illust-main">🧪</text>
+      <text class="illust-sub-1">💗</text>
+      <text class="illust-sub-2">📊</text>
+    </view>
+    <view class="card-info">
+      <view class="card-tag">10道趣味题目</view>
+      <view class="card-text">只需2分钟，精准测出你的情感健康指数</view>
     </view>
   </view>
 
-  <!-- 测试说明 -->
-  <view class="card info-card">
-    <view class="card-badge info-badge">📋 测试说明</view>
-    <view class="card-content">
-      本表单共 <text class="highlight">10 道题</text>，对应 <text class="highlight">10 个维度</text>（每维度 1 道题）。题目采用 <text class="highlight">10分制</text>（满分100），聚焦于"主观感受"与"互动模式"。
+  <!-- 特色说明 -->
+  <view class="features-row">
+    <view class="feature-item">
+      <text class="feature-icon">🔒</text>
+      <text class="feature-label">隐私安全</text>
     </view>
-    <view class="card-tip">
-      <text class="tip-icon">💡</text>
-      <text>请认真作答，勿与伴侣商量，选择你心中真实感受。</text>
+    <view class="feature-item">
+      <text class="feature-icon">🎯</text>
+      <text class="feature-label">精准分析</text>
     </view>
-  </view>
-
-  <!-- 法律声明 -->
-  <view class="card legal-card">
-    <view class="card-badge legal-badge">⚖️ 法律声明</view>
-    <view class="card-content legal-text">
-      本评估表属于亲密关系生活质量的"情感续航自查工具"，旨在帮助双方识别日常相处中的"沟通盲区"与"情绪漏电点"。测评结果属于趣味性与建设性参考，非专业心理学或法律诊断，不具备任何法律诉讼证据效力。理智看待，切勿生搬硬套。
+    <view class="feature-item">
+      <text class="feature-icon">💊</text>
+      <text class="feature-label">专属建议</text>
     </view>
   </view>
 
-  <!-- 评分说明 -->
-  <view class="card score-card">
-    <view class="card-badge score-badge">📊 评分标准</view>
-    <view class="score-list">
-      <view class="score-item">
-        <view class="score-num">2</view>
-        <text class="score-desc">完全不符合</text>
-      </view>
-      <view class="score-item">
-        <view class="score-num">4</view>
-        <text class="score-desc">比较不符合</text>
-      </view>
-      <view class="score-item">
-        <view class="score-num">6</view>
-        <text class="score-desc">不确定 / 中立</text>
-      </view>
-      <view class="score-item">
-        <view class="score-num">8</view>
-        <text class="score-desc">比较符合</text>
-      </view>
-      <view class="score-item">
-        <view class="score-num">10</view>
-        <text class="score-desc">完全符合</text>
-      </view>
-    </view>
-  </view>
-
-  <!-- 开始测试按钮 -->
+  <!-- 开始按钮 -->
   <view class="btn-wrapper">
     <button class="btn-primary start-btn" bindtap="startTest">
-      <text class="btn-icon">🚀</text>
-      <text>开始测试</text>
+      <text>开始测试 💕</text>
     </button>
   </view>
 
-  <!-- 底部信息 -->
-  <view class="footer-info">
-    <text>测试时间约3-5分钟 | 结果仅供参考</text>
+  <!-- 底部小字 -->
+  <view class="footer-note">
+    <text>仅供娱乐参考 · 不收集任何隐私信息</text>
   </view>
 </view>
