@@ -43,9 +43,16 @@ Page({
 
   selectOption(e) {
     const { value } = e.currentTarget.dataset
-    const { currentIndex, answers } = this.data
+    const { currentIndex, answers, totalQuestions } = this.data
     answers[currentIndex] = value
     this.setData({ answers })
+
+    // 选择后自动跳转下一题，最后一题不跳
+    if (currentIndex < totalQuestions - 1) {
+      setTimeout(() => {
+        this.setData({ currentIndex: currentIndex + 1 })
+      }, 300)
+    }
   },
 
   prevQuestion() {
