@@ -1,25 +1,48 @@
 <view class="container">
+  <!-- 背景装饰 -->
+  <view class="bg-decoration">
+    <view class="bg-circle bg-circle-1"></view>
+    <view class="bg-circle bg-circle-2"></view>
+    <view class="bg-circle bg-circle-3"></view>
+  </view>
+
   <!-- 加载动画区域 -->
   <view class="loading-wrapper">
-    <!-- 动画圆环 -->
-    <view class="loading-circle">
-      <view class="spinner"></view>
-      <view class="loading-icon">🔮</view>
+    <!-- 多层旋转圆环 -->
+    <view class="rings-container">
+      <view class="ring ring-outer"></view>
+      <view class="ring ring-middle"></view>
+      <view class="ring ring-inner"></view>
+      <view class="center-icon">🔮</view>
     </view>
 
     <!-- 加载文字 -->
-    <view class="loading-text">{{loadingText}}</view>
-    <view class="countdown-text">（显示~{{countdown}}秒进入广告）</view>
+    <view class="loading-title">{{loadingText}}</view>
+    <view class="loading-dots">
+      <view class="dot dot-1"></view>
+      <view class="dot dot-2"></view>
+      <view class="dot dot-3"></view>
+    </view>
+    <view class="countdown-text">{{countdown}}秒后查看结果</view>
+
+    <!-- 提示语 -->
+    <view class="tips-section">
+      <view class="tip-item">
+        <text class="tip-icon">💡</text>
+        <text class="tip-text">正在综合分析您的10个维度数据...</text>
+      </view>
+    </view>
   </view>
 
   <!-- 广告位预留 -->
-  <view class="ad-placeholder">
-    <view class="ad-label">广告位</view>
+  <view class="ad-section">
+    <view class="ad-label">— 广告 —</view>
     <view class="ad-box">
       <!-- 实际接入时替换为 ad 组件 -->
       <!-- <ad unit-id="your-ad-unit-id"></ad> -->
-      <view class="ad-mock">
-        <text class="ad-mock-text">广告加载中...</text>
+      <view class="ad-placeholder">
+        <view class="ad-icon">📢</view>
+        <text class="ad-text">广告位</text>
       </view>
     </view>
   </view>

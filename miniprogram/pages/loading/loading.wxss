@@ -6,6 +6,56 @@
   min-height: 100vh;
   padding: 60rpx 30rpx;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景装饰 */
+.bg-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.bg-circle {
+  position: absolute;
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.bg-circle-1 {
+  width: 400rpx;
+  height: 400rpx;
+  background: radial-gradient(circle, rgba(108, 92, 231, 0.12), transparent);
+  top: -100rpx;
+  right: -100rpx;
+  animation-delay: 0s;
+}
+
+.bg-circle-2 {
+  width: 300rpx;
+  height: 300rpx;
+  background: radial-gradient(circle, rgba(162, 155, 254, 0.1), transparent);
+  bottom: 200rpx;
+  left: -80rpx;
+  animation-delay: 2s;
+}
+
+.bg-circle-3 {
+  width: 250rpx;
+  height: 250rpx;
+  background: radial-gradient(circle, rgba(116, 185, 255, 0.1), transparent);
+  bottom: -50rpx;
+  right: 60rpx;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30rpx) scale(1.05); }
 }
 
 /* 加载动画区域 */
@@ -14,27 +64,49 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 80rpx;
+  position: relative;
+  z-index: 1;
 }
 
-/* 圆环动画 */
-.loading-circle {
-  width: 200rpx;
-  height: 200rpx;
+/* 多层旋转圆环 */
+.rings-container {
+  width: 260rpx;
+  height: 260rpx;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 40rpx;
+  margin-bottom: 50rpx;
 }
 
-.spinner {
+.ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 8rpx solid #e0e0e0;
-  border-top: 8rpx solid #667eea;
   border-radius: 50%;
-  animation: spin 1.2s linear infinite;
+  border: 4rpx solid transparent;
+}
+
+.ring-outer {
+  width: 260rpx;
+  height: 260rpx;
+  border-top-color: #6c5ce7;
+  border-right-color: rgba(108, 92, 231, 0.3);
+  animation: spin 2s linear infinite;
+}
+
+.ring-middle {
+  width: 200rpx;
+  height: 200rpx;
+  border-bottom-color: #a29bfe;
+  border-left-color: rgba(162, 155, 254, 0.3);
+  animation: spinReverse 1.5s linear infinite;
+}
+
+.ring-inner {
+  width: 140rpx;
+  height: 140rpx;
+  border-top-color: #74b9ff;
+  border-right-color: rgba(116, 185, 255, 0.3);
+  animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
@@ -42,56 +114,131 @@
   100% { transform: rotate(360deg); }
 }
 
-.loading-icon {
-  font-size: 60rpx;
-  z-index: 1;
+@keyframes spinReverse {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
 }
 
-/* 文字 */
-.loading-text {
-  font-size: 34rpx;
-  color: #333;
-  font-weight: bold;
+.center-icon {
+  font-size: 60rpx;
+  z-index: 1;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.8; }
+}
+
+/* 文字区域 */
+.loading-title {
+  font-size: 36rpx;
+  color: #2d3436;
+  font-weight: 700;
   margin-bottom: 16rpx;
 }
 
-.countdown-text {
-  font-size: 26rpx;
-  color: #999;
+/* 加载点 */
+.loading-dots {
+  display: flex;
+  gap: 12rpx;
+  margin-bottom: 20rpx;
 }
 
-/* 广告位 */
-.ad-placeholder {
+.dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #6c5ce7;
+  animation: bounce 1.4s ease-in-out infinite;
+}
+
+.dot-1 { animation-delay: 0s; }
+.dot-2 { animation-delay: 0.2s; }
+.dot-3 { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40% { transform: scale(1); opacity: 1; }
+}
+
+.countdown-text {
+  font-size: 28rpx;
+  color: #6c5ce7;
+  font-weight: 600;
+  padding: 8rpx 30rpx;
+  background: rgba(108, 92, 231, 0.08);
+  border-radius: 20rpx;
+}
+
+/* 提示区域 */
+.tips-section {
+  margin-top: 40rpx;
+}
+
+.tip-item {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  animation: fadeInOut 3s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+.tip-icon {
+  font-size: 28rpx;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #888;
+}
+
+/* 广告区域 */
+.ad-section {
   width: 100%;
-  max-width: 600rpx;
+  max-width: 620rpx;
+  position: relative;
+  z-index: 1;
 }
 
 .ad-label {
   font-size: 22rpx;
-  color: #bbb;
+  color: #ccc;
   text-align: center;
-  margin-bottom: 12rpx;
+  margin-bottom: 16rpx;
+  letter-spacing: 4rpx;
 }
 
 .ad-box {
   width: 100%;
-  min-height: 300rpx;
+  min-height: 280rpx;
   background: #fff;
-  border-radius: 16rpx;
+  border-radius: 20rpx;
   overflow: hidden;
-  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8rpx 40rpx rgba(108, 92, 231, 0.08);
 }
 
-.ad-mock {
+.ad-placeholder {
   width: 100%;
-  height: 300rpx;
+  height: 280rpx;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  gap: 16rpx;
+  background: linear-gradient(135deg, #f8f9ff 0%, #eef0ff 100%);
 }
 
-.ad-mock-text {
-  font-size: 28rpx;
-  color: #999;
+.ad-icon {
+  font-size: 48rpx;
+  opacity: 0.6;
+}
+
+.ad-text {
+  font-size: 26rpx;
+  color: #bbb;
 }

@@ -1,20 +1,37 @@
 <view class="container">
-  <!-- 电量图标 -->
+  <!-- 背景装饰 -->
+  <view class="bg-decoration">
+    <view class="bg-shape shape-1"></view>
+    <view class="bg-shape shape-2"></view>
+  </view>
+
+  <!-- 电量展示区 -->
   <view class="battery-section">
-    <view class="battery-icon">{{batteryIcon}}</view>
-    <view class="battery-percent">{{batteryPercent}}</view>
-    <view class="score-display">总分：{{score}}分</view>
+    <view class="battery-glow"></view>
+    <view class="battery-icon-wrapper">
+      <text class="battery-emoji">{{batteryIcon}}</text>
+    </view>
+    <view class="battery-info">
+      <text class="battery-percent">{{batteryPercent}}</text>
+      <view class="score-badge">
+        <text class="score-text">总分：{{score}}分</text>
+      </view>
+    </view>
   </view>
 
   <!-- 等级标题 -->
-  <view class="level-card">
-    <text class="level-text">{{level}}</text>
+  <view class="level-banner">
+    <view class="level-content">
+      <text class="level-text">{{level}}</text>
+    </view>
   </view>
 
   <!-- 诊断结果 -->
   <view class="result-card diagnosis-card">
     <view class="card-header">
-      <view class="card-icon">🩺</view>
+      <view class="header-icon-wrap diagnosis-icon-bg">
+        <text class="header-icon">🩺</text>
+      </view>
       <text class="card-title">诊断：</text>
     </view>
     <view class="card-body">
@@ -25,7 +42,9 @@
   <!-- 关系保鲜方 -->
   <view class="result-card prescription-card">
     <view class="card-header">
-      <view class="card-icon">💊</view>
+      <view class="header-icon-wrap prescription-icon-bg">
+        <text class="header-icon">💊</text>
+      </view>
       <text class="card-title">关系保鲜方：</text>
     </view>
     <view class="card-body">
@@ -35,7 +54,10 @@
 
   <!-- 操作按钮 -->
   <view class="action-buttons">
-    <button class="btn-primary poster-btn" bindtap="generatePoster">生成海报分享</button>
+    <button class="poster-btn" bindtap="generatePoster">
+      <text class="poster-btn-icon">🎨</text>
+      <text>生成海报分享</text>
+    </button>
     <button class="restart-btn" bindtap="restartTest">
       <text>再测一次</text>
       <text class="restart-icon">🔄</text>
@@ -47,21 +69,31 @@
     <text>{{disclaimer}}</text>
   </view>
 
-  <!-- 底部导航推荐 -->
+  <!-- 底部推荐 -->
   <view class="recommend-section">
-    <view class="recommend-title">更多趣味测试</view>
+    <view class="recommend-header">
+      <view class="recommend-line"></view>
+      <text class="recommend-title">更多趣味测试</text>
+      <view class="recommend-line"></view>
+    </view>
     <view class="recommend-list">
       <view class="recommend-item">
-        <text class="recommend-icon">🔮</text>
-        <text>测运势</text>
+        <view class="recommend-icon-wrap">
+          <text class="recommend-icon">🔮</text>
+        </view>
+        <text class="recommend-name">测运势</text>
       </view>
       <view class="recommend-item">
-        <text class="recommend-icon">📛</text>
-        <text>起名字</text>
+        <view class="recommend-icon-wrap">
+          <text class="recommend-icon">📛</text>
+        </view>
+        <text class="recommend-name">起名字</text>
       </view>
       <view class="recommend-item">
-        <text class="recommend-icon">📖</text>
-        <text>百家姓</text>
+        <view class="recommend-icon-wrap">
+          <text class="recommend-icon">📖</text>
+        </view>
+        <text class="recommend-name">百家姓</text>
       </view>
     </view>
   </view>

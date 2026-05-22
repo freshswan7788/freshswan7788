@@ -1,57 +1,83 @@
 <view class="container">
+  <!-- 顶部装饰 -->
+  <view class="top-decoration">
+    <view class="deco-circle circle-1"></view>
+    <view class="deco-circle circle-2"></view>
+    <view class="deco-circle circle-3"></view>
+  </view>
+
+  <!-- 标题区域 -->
+  <view class="header-section">
+    <view class="header-icon">💕</view>
+    <view class="header-title">两性情感计算器</view>
+    <view class="header-subtitle">婚姻情感续航自查工具</view>
+  </view>
+
   <!-- 声明区域 -->
-  <view class="declaration-card">
-    <view class="card-title">声明：</view>
+  <view class="card declaration-card">
+    <view class="card-badge">📢 声明</view>
     <view class="card-content">
-      本情感计算器，不收集个人信息，只做娱乐用途，不收取任何费用，只赚点广告佣金，买放心使用。
+      本情感计算器，不收集个人信息，只做娱乐用途，不收取任何费用，只赚点广告佣金，可放心使用。
     </view>
   </view>
 
   <!-- 测试说明 -->
-  <view class="info-card">
+  <view class="card info-card">
+    <view class="card-badge info-badge">📋 测试说明</view>
     <view class="card-content">
-      本表单共 <text class="highlight">20 道题</text>，严格对应前文的 10 个维度（每维度 2 道题）。题目采用 <text class="highlight">李克特 5 级量表法</text>（1-5分），完全避开了财产、通话记录、出轨历史等敏感隐私，聚焦于"主观感受"与"互动模式"。
+      本表单共 <text class="highlight">20 道题</text>，严格对应 <text class="highlight">10 个维度</text>（每维度 2 道题）。题目采用 <text class="highlight">李克特 5 级量表法</text>（1-5分），完全避开财产、通话记录、出轨历史等敏感隐私，聚焦于"主观感受"与"互动模式"。
     </view>
-    <view class="card-sub">
-      请认真作答，勿与伴侣商量，选择你心中真实感受。
+    <view class="card-tip">
+      <text class="tip-icon">💡</text>
+      <text>请认真作答，勿与伴侣商量，选择你心中真实感受。</text>
     </view>
   </view>
 
   <!-- 法律声明 -->
-  <view class="legal-card">
-    <view class="card-title">⚖️ 法律声明（清醒告知）</view>
+  <view class="card legal-card">
+    <view class="card-badge legal-badge">⚖️ 法律声明</view>
     <view class="card-content legal-text">
       本评估表属于亲密关系生活质量的"情感续航自查工具"，旨在帮助双方识别日常相处中的"沟通盲区"与"情绪漏电点"。测评结果属于趣味性与建设性参考，非专业心理学或法律诊断，不具备任何法律诉讼证据效力。理智看待，切勿生搬硬套。
     </view>
   </view>
 
   <!-- 评分说明 -->
-  <view class="score-card">
-    <view class="card-title">评分标准：</view>
-    <view class="score-item">
-      <text class="score-label">1分</text>
-      <text class="score-desc">完全不符合</text>
-    </view>
-    <view class="score-item">
-      <text class="score-label">2分</text>
-      <text class="score-desc">比较不符合</text>
-    </view>
-    <view class="score-item">
-      <text class="score-label">3分</text>
-      <text class="score-desc">不确定 / 中立</text>
-    </view>
-    <view class="score-item">
-      <text class="score-label">4分</text>
-      <text class="score-desc">比较符合</text>
-    </view>
-    <view class="score-item">
-      <text class="score-label">5分</text>
-      <text class="score-desc">完全符合</text>
+  <view class="card score-card">
+    <view class="card-badge score-badge">📊 评分标准</view>
+    <view class="score-list">
+      <view class="score-item">
+        <view class="score-num">1</view>
+        <text class="score-desc">完全不符合</text>
+      </view>
+      <view class="score-item">
+        <view class="score-num">2</view>
+        <text class="score-desc">比较不符合</text>
+      </view>
+      <view class="score-item">
+        <view class="score-num">3</view>
+        <text class="score-desc">不确定 / 中立</text>
+      </view>
+      <view class="score-item">
+        <view class="score-num">4</view>
+        <text class="score-desc">比较符合</text>
+      </view>
+      <view class="score-item">
+        <view class="score-num">5</view>
+        <text class="score-desc">完全符合</text>
+      </view>
     </view>
   </view>
 
   <!-- 开始测试按钮 -->
   <view class="btn-wrapper">
-    <button class="btn-primary start-btn" bindtap="startTest">开始测试</button>
+    <button class="btn-primary start-btn" bindtap="startTest">
+      <text class="btn-icon">🚀</text>
+      <text>开始测试</text>
+    </button>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer-info">
+    <text>测试时间约3-5分钟 | 结果仅供参考</text>
   </view>
 </view>
