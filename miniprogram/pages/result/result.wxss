@@ -48,11 +48,11 @@
 
 .heart-glow {
   position: absolute;
-  top: 30rpx;
-  width: 240rpx;
-  height: 240rpx;
+  top: 10rpx;
+  width: 320rpx;
+  height: 320rpx;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 71, 87, 0.15), transparent);
+  background: radial-gradient(circle, rgba(255, 71, 87, 0.2), transparent);
   animation: heartGlow 2s ease-in-out infinite;
 }
 
@@ -74,8 +74,16 @@
 }
 
 .heart-emoji {
-  font-size: 60rpx;
-  letter-spacing: 12rpx;
+  font-size: 160rpx;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
+  60% { transform: scale(1); }
 }
 
 .heart-info {

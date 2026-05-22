@@ -24,14 +24,14 @@ Page({
     if (score >= 85) {
       level = '❤️ 85-100分：【满分爱意 —— 神仙眷侣】'
       levelShort = '满分爱意'
-      batteryIcon = '❤️'
+      batteryIcon = '❤️‍🔥'
       batteryPercent = score + '/100'
       diagnosis = '恭喜！你们的感情稳如磐石，情绪价值拉满，信任感爆棚。对方是你最合拍的"联机队友"，外界诱惑在你们面前不堪一击。唯一风险：恩爱秀太多容易被朋友屏蔽。'
       prescription = '尝试一起挑战新鲜事物：陌生城市徒步、硬核密室逃脱、换风格"假装初次见面"约会，给满分关系加点惊喜多巴胺。'
     } else if (score >= 65) {
       level = '💗 65-84分：【爱意尚存 —— 日常省电模式】'
       levelShort = '爱意尚存'
-      batteryIcon = '💗'
+      batteryIcon = '💖'
       batteryPercent = score + '/100'
       diagnosis = '安全稳定但开始无趣。你们是靠谱的"生活搭子"，但心跳加速的感觉正在退化成"收到快递通知"的波澜。安全感够，浪漫配额被外卖和刷手机瓜分了。'
       prescription = '每天15分钟"深度连麦"：不聊工作不聊琐事，只聊大瓜、分享歌曲、说说心里话。重新激活"精神知己"磁场。'
