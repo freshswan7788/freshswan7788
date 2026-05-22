@@ -1,3 +1,5 @@
+const IMAGES = require('../../utils/images')
+
 Page({
   data: {
     score: 0,
@@ -5,6 +7,7 @@ Page({
     levelShort: '',
     batteryIcon: '',
     batteryPercent: '',
+    resultImg: '',
     diagnosis: '',
     prescription: '',
     disclaimer: '本结果仅当娱乐，切勿当真。',
@@ -79,11 +82,23 @@ Page({
       prescription = '人间清醒三步走：①经济独立准备——存钱、提升收入、掌握财务主动权；②社交支持网络——告诉信任的朋友你的真实状况，别独自扛；③寻求专业帮助——心理咨询师或法律顾问。记住：及时止损不是失败，是对自己最大的温柔。'
     }
 
+    // 根据分数选择对应图片
+    let resultImg
+    if (score >= 95) resultImg = IMAGES.result100
+    else if (score >= 85) resultImg = IMAGES.result85
+    else if (score >= 75) resultImg = IMAGES.result75
+    else if (score >= 65) resultImg = IMAGES.result65
+    else if (score >= 55) resultImg = IMAGES.result55
+    else if (score >= 45) resultImg = IMAGES.result45
+    else if (score >= 35) resultImg = IMAGES.result35
+    else resultImg = IMAGES.result20
+
     this.setData({
       level,
       levelShort,
       batteryIcon,
       batteryPercent,
+      resultImg,
       diagnosis,
       prescription
     })

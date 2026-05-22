@@ -1,142 +1,65 @@
-<view class="container">
-  <!-- 背景装饰 -->
-  <view class="bg-decoration">
-    <view class="bg-shape shape-1"></view>
-    <view class="bg-shape shape-2"></view>
-  </view>
+<view class="page">
+  <!-- 渐变背景 -->
+  <view class="bg-layer"></view>
 
-  <!-- 卡通漂浮元素 -->
-  <view class="cartoon-floats">
-    <text class="cf-item cf-1">🌸</text>
-    <text class="cf-item cf-2">✨</text>
-    <text class="cf-item cf-3">🦋</text>
-    <text class="cf-item cf-4">💫</text>
-    <text class="cf-item cf-5">🌷</text>
-  </view>
-
-  <!-- 爱心展示区 -->
-  <view class="heart-section">
-    <view class="heart-glow"></view>
-    <view class="hearts-row">
-      <text class="heart-emoji">{{batteryIcon}}</text>
-    </view>
-    <view class="heart-info">
-      <text class="heart-percent">{{batteryPercent}}</text>
-      <view class="score-badge">
-        <text class="score-text">总分：{{score}}分</text>
+  <view class="content">
+    <!-- 顶部结果插画 -->
+    <view class="result-visual">
+      <image class="result-image" src="{{resultImg}}" mode="aspectFit"></image>
+      <view class="score-circle">
+        <text class="score-num">{{score}}</text>
+        <text class="score-unit">分</text>
       </view>
     </view>
-    <!-- 装饰小元素 -->
-    <text class="deco-star deco-1">⭐</text>
-    <text class="deco-star deco-2">✨</text>
-    <text class="deco-star deco-3">💫</text>
-  </view>
 
-  <!-- 等级标题 -->
-  <view class="level-banner">
-    <view class="level-content">
-      <text class="level-text">{{level}}</text>
+    <!-- 爱心+等级 -->
+    <view class="level-area">
+      <text class="heart-icon">{{batteryIcon}}</text>
+      <text class="level-label">{{levelShort}}</text>
+      <text class="percent-text">{{batteryPercent}}</text>
     </view>
-  </view>
 
-  <!-- 诊断结果 -->
-  <view class="result-card diagnosis-card">
-    <view class="card-header">
-      <view class="header-icon-wrap diagnosis-icon-bg">
-        <text class="header-icon">🩺</text>
+    <!-- 诊断卡片 -->
+    <view class="card diagnosis-card">
+      <view class="card-top">
+        <text class="card-emoji">🩺</text>
+        <text class="card-title">诊断</text>
       </view>
-      <text class="card-title">诊断：</text>
+      <text class="card-body">{{diagnosis}}</text>
     </view>
-    <view class="card-body">
-      <text class="card-content">{{diagnosis}}</text>
-    </view>
-  </view>
 
-  <!-- 关系保鲜方 -->
-  <view class="result-card prescription-card">
-    <view class="card-header">
-      <view class="header-icon-wrap prescription-icon-bg">
-        <text class="header-icon">💊</text>
+    <!-- 保鲜方卡片 -->
+    <view class="card prescription-card">
+      <view class="card-top">
+        <text class="card-emoji">💊</text>
+        <text class="card-title">关系保鲜方</text>
       </view>
-      <text class="card-title">关系保鲜方：</text>
+      <text class="card-body">{{prescription}}</text>
     </view>
-    <view class="card-body">
-      <text class="card-content">{{prescription}}</text>
+
+    <!-- 操作按钮 -->
+    <view class="actions">
+      <button class="share-btn" bindtap="generatePoster">🎨 生成海报分享</button>
+      <button class="retry-btn" bindtap="restartTest">🔄 再测一次</button>
     </view>
-  </view>
 
-  <!-- 操作按钮 -->
-  <view class="action-buttons">
-    <button class="poster-btn" bindtap="generatePoster">
-      <text class="poster-btn-icon">🎨</text>
-      <text>生成海报分享</text>
-    </button>
-    <button class="restart-btn" bindtap="restartTest">
-      <text>再测一次</text>
-      <text class="restart-icon">🔄</text>
-    </button>
-  </view>
-
-  <!-- 免责声明 -->
-  <view class="disclaimer">
-    <text>{{disclaimer}}</text>
-  </view>
-
-  <!-- 底部推荐 -->
-  <view class="recommend-section">
-    <view class="recommend-header">
-      <view class="recommend-line"></view>
-      <text class="recommend-title">更多趣味测试</text>
-      <view class="recommend-line"></view>
-    </view>
-    <view class="recommend-list">
-      <view class="recommend-item">
-        <view class="recommend-icon-wrap">
-          <text class="recommend-icon">🔮</text>
-        </view>
-        <text class="recommend-name">测运势</text>
-      </view>
-      <view class="recommend-item">
-        <view class="recommend-icon-wrap">
-          <text class="recommend-icon">📛</text>
-        </view>
-        <text class="recommend-name">起名字</text>
-      </view>
-      <view class="recommend-item">
-        <view class="recommend-icon-wrap">
-          <text class="recommend-icon">📖</text>
-        </view>
-        <text class="recommend-name">百家姓</text>
-      </view>
+    <!-- 底部 -->
+    <view class="footer-text">
+      <text>{{disclaimer}}</text>
     </view>
   </view>
 
-  <!-- 隐藏的Canvas用于绘制海报 -->
-  <canvas type="2d" id="posterCanvas" class="poster-canvas"></canvas>
+  <!-- 隐藏Canvas -->
+  <canvas type="2d" id="posterCanvas" style="position:fixed;left:-9999px;top:0;width:750px;height:1200px;"></canvas>
 
   <!-- 海报弹窗 -->
   <view class="poster-modal {{showPoster ? 'show' : ''}}" bindtap="closePoster">
     <view class="poster-modal-content" catchtap="preventTap">
-      <!-- 关闭按钮 -->
-      <view class="poster-close" bindtap="closePoster">
-        <text>✕</text>
-      </view>
-      
-      <!-- 海报图片 -->
-      <image 
-        class="poster-image" 
-        src="{{posterUrl}}" 
-        mode="widthFix"
-        show-menu-by-longpress="{{true}}"
-      ></image>
-      
-      <!-- 底部操作 -->
+      <view class="poster-close" bindtap="closePoster"><text>✕</text></view>
+      <image class="poster-image" src="{{posterUrl}}" mode="widthFix" show-menu-by-longpress="{{true}}"></image>
       <view class="poster-actions">
-        <button class="save-btn" bindtap="savePoster">
-          <text class="save-icon">💾</text>
-          <text>保存到相册</text>
-        </button>
-        <view class="poster-tip">长按图片可直接分享给好友</view>
+        <button class="save-btn" bindtap="savePoster">💾 保存到相册</button>
+        <text class="poster-tip">长按图片可直接分享给好友</text>
       </view>
     </view>
   </view>

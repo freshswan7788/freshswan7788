@@ -1,53 +1,18 @@
-/* 全局样式 - 卡通可爱风 */
+/* 全局样式 */
 page {
   background: #fff5f5;
   font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, 'Microsoft YaHei', sans-serif;
-  font-size: 32rpx;
+  font-size: 30rpx;
   color: #4a3f5c;
   line-height: 1.7;
   min-height: 100vh;
 }
 
-.container {
-  padding: 30rpx;
-  box-sizing: border-box;
+button {
+  margin: 0;
+  padding: 0;
 }
 
-/* 通用按钮样式 - 可爱圆润 */
-.btn-primary {
-  background: #ff6b8a;
-  color: #fff;
+button::after {
   border: none;
-  border-radius: 60rpx;
-  padding: 24rpx 60rpx;
-  font-size: 32rpx;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 10rpx 30rpx rgba(255, 107, 138, 0.35);
-  position: relative;
-  overflow: hidden;
-  letter-spacing: 2rpx;
-}
-
-.btn-primary::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation: shine 3s ease-in-out infinite;
-}
-
-@keyframes shine {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-.btn-primary:active {
-  opacity: 0.9;
-  transform: scale(0.96);
-  background: #ff5277;
-  box-shadow: 0 6rpx 16rpx rgba(255, 107, 138, 0.3);
 }

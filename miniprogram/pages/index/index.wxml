@@ -1,59 +1,45 @@
-<view class="container">
-  <!-- 顶部漂浮装饰 -->
-  <view class="floating-elements">
-    <text class="float-item float-1">💕</text>
-    <text class="float-item float-2">✨</text>
-    <text class="float-item float-3">🌸</text>
-    <text class="float-item float-4">💫</text>
-    <text class="float-item float-5">🦋</text>
-    <text class="float-item float-6">🌷</text>
-  </view>
+<view class="page">
+  <!-- 渐变背景层 -->
+  <view class="bg-layer"></view>
 
-  <!-- 主视觉区域 -->
-  <view class="hero-section">
-    <view class="hero-icon">💑</view>
-    <view class="hero-title">两性情感计算器</view>
-    <view class="hero-desc">测一测你们的爱情温度</view>
-  </view>
+  <!-- 主内容 -->
+  <view class="content">
+    <!-- 主视觉插画 -->
+    <view class="hero-image-wrap">
+      <image class="hero-image" src="{{heroImg}}" mode="aspectFit"></image>
+    </view>
 
-  <!-- 卡通插画卡片 -->
-  <view class="feature-card">
-    <view class="card-illustration">
-      <text class="illust-main">🧪</text>
-      <text class="illust-sub-1">💗</text>
-      <text class="illust-sub-2">📊</text>
+    <!-- 标题区 -->
+    <view class="title-area">
+      <text class="main-title">两性情感计算器</text>
+      <text class="sub-title">2分钟测出你的爱情温度</text>
     </view>
-    <view class="card-info">
-      <view class="card-tag">10道趣味题目</view>
-      <view class="card-text">只需2分钟，精准测出你的情感健康指数</view>
-    </view>
-  </view>
 
-  <!-- 特色说明 -->
-  <view class="features-row">
-    <view class="feature-item">
-      <text class="feature-icon">🔒</text>
-      <text class="feature-label">隐私安全</text>
+    <!-- 亮点标签 -->
+    <view class="tags-row">
+      <view class="tag-item">
+        <text class="tag-emoji">🔒</text>
+        <text class="tag-text">隐私安全</text>
+      </view>
+      <view class="tag-item">
+        <text class="tag-emoji">🎯</text>
+        <text class="tag-text">10维度分析</text>
+      </view>
+      <view class="tag-item">
+        <text class="tag-emoji">💊</text>
+        <text class="tag-text">专属处方</text>
+      </view>
     </view>
-    <view class="feature-item">
-      <text class="feature-icon">🎯</text>
-      <text class="feature-label">精准分析</text>
-    </view>
-    <view class="feature-item">
-      <text class="feature-icon">💊</text>
-      <text class="feature-label">专属建议</text>
-    </view>
-  </view>
 
-  <!-- 开始按钮 -->
-  <view class="btn-wrapper">
-    <button class="btn-primary start-btn" bindtap="startTest">
-      <text>开始测试 💕</text>
+    <!-- 开始按钮 -->
+    <button class="start-btn" bindtap="startTest">
+      <text class="start-text">开始测试</text>
+      <text class="start-arrow">→</text>
     </button>
-  </view>
 
-  <!-- 底部小字 -->
-  <view class="footer-note">
-    <text>仅供娱乐参考 · 不收集任何隐私信息</text>
+    <!-- 底部信息 -->
+    <view class="bottom-note">
+      <text>仅供娱乐 · 不收集隐私 · 完全免费</text>
+    </view>
   </view>
 </view>

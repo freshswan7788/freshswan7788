@@ -1,5 +1,9 @@
+const IMAGES = require('../../utils/images')
+
 Page({
-  data: {},
+  data: {
+    heroImg: IMAGES.heroCouple
+  },
 
   onLoad() {},
 
